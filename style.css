@@ -1,55 +1,160 @@
-body {
-  font-family: sans-serif;
-  background: #e5ddd5;
+:root{
+  /* Telegram-ish dark palette */
+  --bg: #0e1621;
+  --panel: #17212b;
+  --panel-2: #1f2a36;
+
+  --text: #e6edf3;
+  --muted: #97a3b6;
+
+  --bubble-me: #2b5278;        /* your message bubble */
+  --bubble-other: #202b36;     /* other bubble */
+  --bubble-border: rgba(255,255,255,0.06);
+
+  --accent: #5fb3f3;           /* links / highlights */
+  --pin-bg: #141e27;
+  --pin-hover: #1b2632;
+
+  --shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-#start-screen {
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+  margin: 0;
+}
+
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* start screen */
+#start-screen{
+  min-height: 100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
+  padding: 24px;
 }
 
-#start-btn {
-  padding: 12px 24px;
-  font-size: 18px;
-}
-
-#chat-container {
-  padding: 20px;
-}
-
-.bubble {
-  max-width: 60%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 10px;
-  position: relative;
-}
-
-.me {
-  background: #dcf8c6;
-  margin-left: auto;
-}
-
-.colleague {
-  background: white;
-  margin-right: auto;
-}
-
-.time {
-  font-size: 10px;
-  display: block;
-  text-align: right;
-}
-
-#pinned-area {
-  background: #fff8c6;
-  padding: 10px;
-}
-
-.pin {
+#start-btn{
+  background: var(--accent);
+  color: #081018;
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 22px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: var(--shadow);
+}
+#start-btn:hover{ filter: brightness(1.05); }
+#start-btn:active{ transform: translateY(1px); }
+
+/* chat screen layout */
+#chat-screen{
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
+}
+
+/* pinned area */
+#pinned-area{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg, var(--panel) 0%, rgba(23,33,43,0.92) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 10px 12px;
+}
+
+#pinned-area:empty{
+  display:none;
+}
+
+.pin{
+  background: var(--pin-bg);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+  display:flex;
+  gap: 10px;
+  align-items: center;
+}
+.pin:hover{ background: var(--pin-hover); }
+
+.pin::before{
+  content: "📌";
+  opacity: 0.85;
+}
+.pin .pin-text{
+  color: var(--text);
   font-size: 14px;
-  margin-bottom: 5px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* chat container */
+#chat-container{
+  flex: 1;
+  padding: 18px 14px 28px;
+  max-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* message bubbles */
+.bubble{
+  max-width: min(680px, 78%);
+  padding: 10px 12px 18px;
+  margin: 10px 0;
+  border-radius: 16px;
+  border: 1px solid var(--bubble-border);
+  position: relative;
+  line-height: 1.35;
+  word-break: break-word;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.12);
+}
+
+.bubble.me{
+  background: var(--bubble-me);
+  margin-left: auto;
+  border-top-right-radius: 8px; /* Telegram-ish */
+}
+
+.bubble.colleague{
+  background: var(--bubble-other);
+  margin-right: auto;
+  border-top-left-radius: 8px;
+}
+
+/* time */
+.time{
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  font-size: 12px;
+  color: rgba(230,237,243,0.72);
+}
+
+/* optional: subtle selection */
+::selection{
+  background: rgba(95,179,243,0.25);
+}
+
+/* scrollbar (webkit) */
+*::-webkit-scrollbar{ width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.18);
 }
