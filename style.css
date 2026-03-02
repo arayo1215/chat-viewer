@@ -123,13 +123,13 @@ body{
   box-shadow: 0 2px 0 rgba(0,0,0,0.12);
 }
 
-.bubble.me{
+.bubble.kt{
   background: var(--bubble-me);
   margin-left: auto;
   border-top-right-radius: 8px; /* Telegram-ish */
 }
 
-.bubble.colleague{
+.bubble.yc{
   background: var(--bubble-other);
   margin-right: auto;
   border-top-left-radius: 8px;
@@ -158,3 +158,4 @@ body{
 *::-webkit-scrollbar-thumb:hover{
   background: rgba(255,255,255,0.18);
 }
+
