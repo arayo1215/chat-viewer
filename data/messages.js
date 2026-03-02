@@ -1,7 +1,7 @@
 const messages = [
   {
     id: "m1",
-    sender: "kt",  // "me" 或 "colleague"
+    sender: "kt",  // "kt" or "yc"
     text: "欸你昨天那個 API 是不是壞了",
     time: "22:14",
     pinned: false
@@ -12,6 +12,21 @@ const messages = [
     text: "沒有吧，我本機是正常的",
     time: "22:15",
     pinned: true
+  },
+  {
+    id: "m3",
+    sender: "kt",  // "kt" or "yc"
+    text: "是喔",
+    time: "22:14",
+    pinned: false
+  },
+  {
+    id: "m4",
+    sender: "yc",
+    text: "對啊",
+    time: "22:15",
+    pinned: true
   }
 
 ];
+
