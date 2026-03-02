@@ -18,14 +18,31 @@ function renderMessages() {
     `;
     container.appendChild(bubble);
 
-    if (msg.pinned) {
-      const pin = document.createElement("div");
-      pin.className = "pin";
-      pin.innerText = msg.text;
-      pin.onclick = () => {
-        document.getElementById(msg.id).scrollIntoView({behavior: "smooth"});
-      };
-      pinnedArea.appendChild(pin);
-    }
+    // pinned
+if (msg.pinned) {
+  const pin = document.createElement("div");
+  pin.className = "pin";
+
+  const pinText = document.createElement("div");
+  pinText.className = "pin-text";
+  pinText.textContent = msg.text;
+
+  pin.appendChild(pinText);
+
+  pin.onclick = () => {
+    const el = document.getElementById(msg.id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // 讓被跳轉的訊息短暫高亮一下（像 Telegram）
+    el.animate(
+      [{ filter: "brightness(1.25)" }, { filter: "brightness(1)" }],
+      { duration: 550, easing: "ease-out" }
+    );
+  };
+
+  pinnedArea.appendChild(pin);
+}
   });
+
 }
